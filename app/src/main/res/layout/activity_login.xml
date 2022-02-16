@@ -58,7 +58,7 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <TextView
-            android:id="@+id/login_text_tp"
+            android:id="@+id/register_text_tp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="24dp"
@@ -78,7 +78,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             android:id="@+id/user_logo"
-            app:layout_constraintTop_toBottomOf="@id/login_text_tp"/>
+            app:layout_constraintTop_toBottomOf="@id/register_text_tp"/>
 
 
         <TextView
@@ -98,6 +98,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
             android:layout_marginEnd="16dp"
+            android:textColor="@color/black"
             android:backgroundTint="@color/royal_blue"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -122,6 +123,7 @@
             android:layout_marginEnd="16dp"
             android:layout_marginBottom="24dp"
             android:backgroundTint="@color/royal_blue"
+            android:textColor="@color/black"
             android:inputType="textPassword"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -138,7 +140,7 @@
 
 
         <Button
-            android:id="@+id/login"
+            android:id="@+id/register"
             android:layout_width="200dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="24dp"
@@ -160,7 +162,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/login" />
+            app:layout_constraintTop_toBottomOf="@id/register" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 
