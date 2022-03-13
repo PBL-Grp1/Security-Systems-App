@@ -6,11 +6,15 @@
         <entry key="..\:/Android dev/JAVA/PBL/2022_SE/SecuritySystem/app/src/main/res/drawable-v24/background_rounded.xml" value="0.22552083333333334" />
         <entry key="..\:/Android dev/JAVA/PBL/2022_SE/SecuritySystem/app/src/main/res/drawable-v24/ic_login_bk.xml" value="0.22552083333333334" />
         <entry key="..\:/Android dev/JAVA/PBL/2022_SE/SecuritySystem/app/src/main/res/drawable-v24/login_shape_bk.xml" value="0.22552083333333334" />
+        <entry key="..\:/Android dev/JAVA/PBL/2022_SE/SecuritySystem/app/src/main/res/drawable/field_background_grey_border.xml" value="0.22552083333333334" />
+        <entry key="..\:/Android dev/JAVA/PBL/2022_SE/SecuritySystem/app/src/main/res/drawable/user_white.xml" value="0.22552083333333334" />
         <entry key="..\:/Android dev/JAVA/PBL/2022_SE/SecuritySystem/app/src/main/res/layout/activity_camera.xml" value="0.20520833333333333" />
+        <entry key="..\:/Android dev/JAVA/PBL/2022_SE/SecuritySystem/app/src/main/res/layout/activity_contact_us.xml" value="0.176" />
         <entry key="..\:/Android dev/JAVA/PBL/2022_SE/SecuritySystem/app/src/main/res/layout/activity_forgot_password.xml" value="0.20520833333333333" />
-        <entry key="..\:/Android dev/JAVA/PBL/2022_SE/SecuritySystem/app/src/main/res/layout/activity_login.xml" value="0.264" />
+        <entry key="..\:/Android dev/JAVA/PBL/2022_SE/SecuritySystem/app/src/main/res/layout/activity_login.xml" value="0.2" />
         <entry key="..\:/Android dev/JAVA/PBL/2022_SE/SecuritySystem/app/src/main/res/layout/activity_register.xml" value="0.264" />
         <entry key="..\:/Android dev/JAVA/PBL/2022_SE/SecuritySystem/app/src/main/res/layout/activity_splash_screen.xml" value="0.176" />
+        <entry key="..\:/Android dev/JAVA/PBL/2022_SE/SecuritySystem/app/src/main/res/layout/activity_type_of_register.xml" value="0.176" />
       </map>
     </option>
   </component>

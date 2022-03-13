@@ -1,7 +1,11 @@
 package com.best_company.securitysystem;
 
+import static com.best_company.securitysystem.TypeOfRegister.LOGIN_TITLE;
+import static com.best_company.securitysystem.TypeOfRegister.LOGIN_IMAGE;
+
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.ContextCompat;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
@@ -9,6 +13,7 @@ import android.os.Bundle;
 import android.text.TextUtils;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -20,14 +25,27 @@ import com.google.firebase.auth.FirebaseAuth;
 public class LoginActivity extends AppCompatActivity {
 
     Button login;
-    TextView forgotPW, signUp;
+    TextView forgotPW, signUp,loginTitleText;
     EditText emailET,passwordET;
+    ImageView info,loginLogo;
+
+    String typeOfLogin;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
         init();
+        buttonClicks();
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        finish();
+    }
+
+    private void buttonClicks(){
         login.setOnClickListener(view->{
             loginUser();
         });
@@ -38,14 +56,33 @@ public class LoginActivity extends AppCompatActivity {
             startActivity(new Intent(this,ForgotPasswordActivity.class));
         });
 
+        info.setOnClickListener(view -> {
+            startActivity(new Intent(this,ContactUsActivity.class));
+        });
     }
 
     private void init(){
-        login = findViewById(R.id.register);
-        forgotPW = findViewById(R.id.forgot_password);
+        login = findViewById(R.id.login);
         signUp = findViewById(R.id.signup);
+
+        forgotPW = findViewById(R.id.forgot_password);
+
         emailET = findViewById(R.id.email_id);
         passwordET = findViewById(R.id.password);
+
+        info = findViewById(R.id.info);
+
+
+        //set the title for the login page passed from the intent
+        loginTitleText = findViewById(R.id.login_type_text);
+        typeOfLogin = getIntent().getStringExtra(LOGIN_TITLE);
+        loginTitleText.setText(typeOfLogin);
+
+        //set up the login image also passed in the intent and the tint to app_blue color
+        loginLogo = findViewById(R.id.login_logo_img);
+        int imageId = getIntent().getIntExtra(LOGIN_IMAGE, R.drawable.default_user);
+        loginLogo.setImageDrawable(ContextCompat.getDrawable(this, imageId));
+        loginLogo.setColorFilter(ContextCompat.getColor(this, R.color.app_blue), android.graphics.PorterDuff.Mode.SRC_IN);
     }
 
     private void loginUser(){
@@ -66,7 +103,6 @@ public class LoginActivity extends AppCompatActivity {
                 public void onComplete(@NonNull Task<AuthResult> task) {
                     progressDialog.dismiss();
                     if(task.isSuccessful()){
-
                         Toast.makeText(getApplicationContext(), "Login Sussesfull!", Toast.LENGTH_SHORT).show();
                         startActivity(new Intent(getApplicationContext(), MainActivity.class));
                     }else{
