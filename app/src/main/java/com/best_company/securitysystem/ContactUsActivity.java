@@ -26,7 +26,7 @@ public class ContactUsActivity extends AppCompatActivity {
         init();
         links();
         backPressed();
-        copyToClipboardListeners();
+        copyEmailToClipboard();
     }
 
 
@@ -58,84 +58,67 @@ public class ContactUsActivity extends AppCompatActivity {
     }
 
     private void links(){
+        anandLinks();
+        archishaLinks();
+        abhishekLinks();
+        amritLinks();
+    }
 
-        anandIN.setOnClickListener(view -> {
-            Uri uri = Uri.parse("https://www.instagram.com/anand_bhalerao.a3b/?hl=en");
+    void openTheLink(ImageView imageWithLogo,String link){
+        imageWithLogo.setOnClickListener(view -> {
+            Uri uri = Uri.parse(link);
             startActivity(new Intent(Intent.ACTION_VIEW,uri));
         });
+    }
 
-        anandLI.setOnClickListener(view -> {
-            Uri uri = Uri.parse("https://www.linkedin.com/in/anand-bhalerao-0b69451bb/");
-            startActivity(new Intent(Intent.ACTION_VIEW,uri));
-        });
+    void anandLinks(){
 
-        anandGIT.setOnClickListener(view -> {
-            Uri uri = Uri.parse("https://github.com/Anand-Avinash-Bhalerao");
-            startActivity(new Intent(Intent.ACTION_VIEW,uri));
-        });
+        openTheLink(anandIN,"https://www.instagram.com/anand_bhalerao.a3b/?hl=en");
+        openTheLink(anandLI,"https://www.linkedin.com/in/anand-bhalerao-0b69451bb/");
+        openTheLink(anandGIT,"https://github.com/Anand-Avinash-Bhalerao");
+    }
 
-        archishaIN.setOnClickListener(view -> {
-            Uri uri = Uri.parse("https://instagram.com/archisha_02");
-            startActivity(new Intent(Intent.ACTION_VIEW,uri));
-        });
+    void archishaLinks(){
 
-        archishaLI.setOnClickListener(view -> {
-            Uri uri = Uri.parse("https://www.linkedin.com/in/archisha-mulmulay-a167b6218");
-            startActivity(new Intent(Intent.ACTION_VIEW,uri));
-        });
+        openTheLink(archishaIN,"https://instagram.com/archisha_02");
+        openTheLink(archishaLI,"https://www.linkedin.com/in/archisha-mulmulay-a167b6218");
+        openTheLink(archishaGIT,"https://github.com/archisha-02");
+    }
 
-        archishaGIT.setOnClickListener(view -> {
-            Uri uri = Uri.parse("https://github.com/archisha-02");
-            startActivity(new Intent(Intent.ACTION_VIEW,uri));
-        });
+    void abhishekLinks(){
+        openTheLink(abhiIN,"https://Instagram.com/abhishek.m_s");
+        openTheLink(abhiLI,"");
+        openTheLink(abhiGIT,"https://github.com/ABHISHEKSOUNDALGEKAR");
+    }
 
-        abhiIN.setOnClickListener(view -> {
-            Uri uri = Uri.parse("https://Instagram.com/abhishek.m_s");
-            startActivity(new Intent(Intent.ACTION_VIEW,uri));
-        });
-        abhiLI.setOnClickListener(view -> {
-
-        });
-        abhiGIT.setOnClickListener(view -> {
-            Uri uri = Uri.parse("https://github.com/ABHISHEKSOUNDALGEKAR");
-            startActivity(new Intent(Intent.ACTION_VIEW,uri));
-        });
-
-        amritLI.setOnClickListener(view -> {
-            Uri uri = Uri.parse("https://www.linkedin.com/in/amrit-singh-365310204");
-            startActivity(new Intent(Intent.ACTION_VIEW,uri));
-        });
-
-        amritGIT.setOnClickListener(view -> {
-            Uri uri = Uri.parse("https://github.com/iAmritSingh");
-            startActivity(new Intent(Intent.ACTION_VIEW,uri));
-        });
+    void amritLinks(){
+        openTheLink(amritLI,"https://www.linkedin.com/in/amrit-singh-365310204");
+        openTheLink(amritGIT,"https://github.com/iAmritSingh");
     }
 
     private void backPressed(){
         back.setOnClickListener(view -> {
             onBackPressed();
-        });
-    }
-    private void copyToClipboardListeners() {
-        anandEMAIL.setOnClickListener(view -> {
-            String email = anandEMAIL.getText().toString();
-            copyToClipBoard("Anand",email);
-        });
-        archishaEMAIL.setOnClickListener(view -> {
-            String email = archishaEMAIL.getText().toString();
-            copyToClipBoard("Archisha",email);
-        });
-        abhiEMAIL.setOnClickListener(view -> {
-            String email = abhiEMAIL.getText().toString();
-            copyToClipBoard("Abhishek",email);
-        });
-        amritEMAIL.setOnClickListener(view -> {
-            String email = amritEMAIL.getText().toString();
-            copyToClipBoard("Amrit",email);
+            finish();
         });
     }
 
+    private void copyEmailToClipboard() {
+        copySetOnClickListeners(anandEMAIL,"Anand");
+        copySetOnClickListeners(archishaEMAIL,"Archisha");
+        copySetOnClickListeners(abhiEMAIL,"Abhishek");
+        copySetOnClickListeners(amritEMAIL,"Amrit");
+    }
+
+    // copies the text from text view and sends the email and name to the clipboard copy function
+    void copySetOnClickListeners(TextView emailTextView, String name){
+        emailTextView.setOnClickListener(view -> {
+            String email = emailTextView.getText().toString();
+            copyToClipBoard(name,email);
+        });
+    }
+
+    //function to copy the email to clipboard
     private void copyToClipBoard(String name,String email){
         Context context = getApplicationContext();
         ClipboardManager clipboard = (ClipboardManager) context.getSystemService(Context.CLIPBOARD_SERVICE);
@@ -143,5 +126,4 @@ public class ContactUsActivity extends AppCompatActivity {
         clipboard.setPrimaryClip(clip);
         Toast.makeText(this, name+"'s email is copied!", Toast.LENGTH_SHORT).show();
     }
-
 }

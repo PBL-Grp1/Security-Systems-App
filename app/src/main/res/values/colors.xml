@@ -148,4 +148,7 @@
     <color name="dark_blue">#00008B</color>
     <color name="navy">#000080</color>
     <color name="app_blue">#00a5ff</color>
+    <color name="app_blue_darker">#0047ac</color>
+    <color name="white_smoke_faded">#80F5F5F5</color>
+    <color name="darker_blue">#2a1459</color>
 </resources>

@@ -1,5 +1,7 @@
 package com.best_company.securitysystem;
 
+import static com.best_company.securitysystem.TypeOfLogin.LOGIN_TYPE;
+
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -25,8 +27,13 @@ public class RegisterActivity extends AppCompatActivity {
 
     EditText emailET,passwordET,nameET,phoneET;
     Button registerButton;
-    TextView signup;
+    TextView signInAccountPresent,registerTitle;
     FirebaseAuth auth;
+
+    int registerType;
+
+    public static final int USER_LOGIN = TypeOfLogin.USER_LOGIN;
+    public static final int DEVICE_LOGIN = TypeOfLogin.DEVICE_LOGIN;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,8 +42,8 @@ public class RegisterActivity extends AppCompatActivity {
         init();
         register();
 
-        signup.setOnClickListener(view -> {
-            startActivity(new Intent(getApplicationContext(),LoginActivity.class));
+        signInAccountPresent.setOnClickListener(view -> {
+            onBackPressed();
         });
     }
 
@@ -46,8 +53,20 @@ public class RegisterActivity extends AppCompatActivity {
         nameET = findViewById(R.id.name_id);
         phoneET = findViewById(R.id.phone_id);
         registerButton = findViewById(R.id.login);
-        signup = findViewById(R.id.signup);
+        signInAccountPresent = findViewById(R.id.signup);
         auth = FirebaseAuth.getInstance();
+        registerTitle = findViewById(R.id.register_title);
+
+
+        // to set the title of the register activity
+        registerType = getIntent().getIntExtra(LOGIN_TYPE,USER_LOGIN);
+        String title = "Register";
+        if(registerType == USER_LOGIN)
+            title = "User Register";
+        else if(registerType == DEVICE_LOGIN)
+            title = "Camera Register";
+        registerTitle.setText(title);
+
     }
 
     public void register(){

@@ -32,7 +32,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:fontFamily="@font/simple_light_rounded"
-            android:text="Security System"
+            android:text="Register"
+            android:id="@+id/register_title"
             android:textColor="@color/white"
             android:textSize="36sp"
             app:layout_constraintBottom_toTopOf="@id/login_container"
@@ -57,20 +58,6 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
 
-            <TextView
-                android:id="@+id/register_text_tp"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="24dp"
-                android:fontFamily="@font/simple_light_rounded"
-                android:text="REGISTER"
-                android:textColor="@color/royal_blue"
-                android:textSize="36sp"
-                android:textStyle="bold"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
-
 
             <LinearLayout
                 android:id="@+id/container"
@@ -79,7 +66,7 @@
                 android:orientation="vertical"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/register_text_tp">
+                app:layout_constraintTop_toTopOf="parent">
 
                 <TextView
                     android:id="@+id/email_tp"
@@ -90,7 +77,7 @@
                     android:text="Email"
                     android:textColor="@color/royal_blue"
                     app:layout_constraintStart_toStartOf="@id/email_id"
-                    app:layout_constraintTop_toBottomOf="@id/register_text_tp" />
+                    app:layout_constraintTop_toTopOf="parent" />
 
                 <EditText
                     android:id="@+id/email_id"
@@ -132,7 +119,7 @@
                     android:text="Full Name"
                     android:textColor="@color/royal_blue"
                     app:layout_constraintStart_toStartOf="@id/email_id"
-                    app:layout_constraintTop_toBottomOf="@id/register_text_tp" />
+                    app:layout_constraintTop_toTopOf="parent" />
 
                 <EditText
                     android:id="@+id/name_id"
@@ -155,7 +142,7 @@
                     android:text="Phone Number"
                     android:textColor="@color/royal_blue"
                     app:layout_constraintStart_toStartOf="@id/email_id"
-                    app:layout_constraintTop_toBottomOf="@id/register_text_tp" />
+                    app:layout_constraintTop_toTopOf="parent" />
 
                 <EditText
                     android:id="@+id/phone_id"

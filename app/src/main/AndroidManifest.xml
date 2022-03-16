@@ -12,7 +12,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.SecuritySystem" >
         <activity
-            android:name=".TypeOfRegister"
+            android:name=".TypeOfLogin"
             android:theme="@style/NoActionBar"
             android:exported="true" />
         <activity
