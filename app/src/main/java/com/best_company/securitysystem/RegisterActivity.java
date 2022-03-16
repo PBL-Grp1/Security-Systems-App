@@ -49,11 +49,11 @@ public class RegisterActivity extends AppCompatActivity {
 
     public void init(){
         emailET = findViewById(R.id.email_id);
-        passwordET = findViewById(R.id.password);
+        passwordET = findViewById(R.id.password_id);
         nameET = findViewById(R.id.name_id);
         phoneET = findViewById(R.id.phone_id);
-        registerButton = findViewById(R.id.login);
-        signInAccountPresent = findViewById(R.id.signup);
+        registerButton = findViewById(R.id.registerUser);
+        signInAccountPresent = findViewById(R.id.alreadyHaveAcc);
         auth = FirebaseAuth.getInstance();
         registerTitle = findViewById(R.id.register_title);
 

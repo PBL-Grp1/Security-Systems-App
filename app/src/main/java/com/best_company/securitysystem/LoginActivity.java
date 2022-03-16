@@ -39,7 +39,6 @@ public class LoginActivity extends AppCompatActivity {
         setContentView(R.layout.activity_login);
         init();
         buttonClicks();
-        setTheProperLabelOfEditText();
     }
 
     @Override
@@ -53,8 +52,12 @@ public class LoginActivity extends AppCompatActivity {
             loginUser();
         });
         signUp.setOnClickListener(view -> {
-            Intent intent = new Intent(this, RegisterActivity.class);
-            intent.putExtra(LOGIN_TYPE, loginType);
+            Intent intent;
+            if(loginType == USER_LOGIN){
+                intent = new Intent(this, UserRegister.class);
+            }else{
+                intent = new Intent(this, CameraRegister.class);
+            }
             startActivity(intent);
         });
         forgotPW.setOnClickListener(view -> {
@@ -69,13 +72,13 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     private void init() {
-        login = findViewById(R.id.login);
-        signUp = findViewById(R.id.signup);
+        login = findViewById(R.id.registerUser);
+        signUp = findViewById(R.id.alreadyHaveAcc);
 
         forgotPW = findViewById(R.id.forgot_password);
 
         emailET = findViewById(R.id.email_id);
-        passwordET = findViewById(R.id.password);
+        passwordET = findViewById(R.id.password_id);
 
         emailContainer = findViewById(R.id.email_container);
         passwordContainer = findViewById(R.id.password_container);
@@ -103,17 +106,7 @@ public class LoginActivity extends AppCompatActivity {
         loginLogo.setColorFilter(ContextCompat.getColor(this, R.color.app_blue), android.graphics.PorterDuff.Mode.SRC_IN);
     }
 
-    void setTheProperLabelOfEditText() {
-        emailET.setOnFocusChangeListener((v, hasFocus) -> {
-            if (emailET.getText().toString().equals(""))
-                emailContainer.setHint(hasFocus ? "Email" : "Enter your email");
-        });
 
-        passwordET.setOnFocusChangeListener((v, hasFocus) -> {
-            if (passwordET.getText().toString().equals(""))
-                passwordContainer.setHint(hasFocus ? "Password" : "Enter your password");
-        });
-    }
 
     private void loginUser() {
         String emailString = emailET.getText().toString();

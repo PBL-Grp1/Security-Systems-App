@@ -9,25 +9,25 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="#00a5ff"
+        android:background="@color/app_blue"
         tools:context=".ContactUsActivity">
 
         <androidx.constraintlayout.widget.ConstraintLayout
-            android:layout_width="match_parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
             android:id="@+id/action_bar"
+            android:layout_width="match_parent"
+            android:layout_height="70dp"
+            android:background="@color/status_blue"
             app:layout_constraintEnd_toEndOf="parent"
-            android:background="@color/app_blue_darker"
-            android:layout_height="wrap_content">
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
 
             <ImageView
                 android:id="@+id/back"
                 android:layout_width="40dp"
                 android:layout_height="40dp"
+                android:layout_marginStart="24dp"
                 android:src="@drawable/back"
                 app:layout_constraintBottom_toBottomOf="@id/contactus"
-                app:layout_constraintEnd_toStartOf="@id/contactus"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="@id/contactus" />
 
@@ -35,11 +35,11 @@
                 android:id="@+id/contactus"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_margin="6dp"
+                android:fontFamily="@font/simple_light_rounded"
                 android:text="Contact Us"
                 android:textColor="@color/white"
-                android:layout_margin="6dp"
                 android:textSize="36sp"
-                android:fontFamily="@font/simple_light_rounded"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -48,41 +48,41 @@
         </androidx.constraintlayout.widget.ConstraintLayout>
 
 
-
         <TextView
+            android:id="@+id/android_dev_text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Android Developer"
-            android:textSize="36sp"
+            android:layout_marginTop="12dp"
             android:fontFamily="@font/simple_light_rounded"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
+            android:text="Android Developer"
             android:textColor="@color/darker_blue"
-            app:layout_constraintTop_toBottomOf="@id/action_bar"
-            android:id="@+id/android_dev_text"/>
+            android:textSize="36sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/action_bar" />
 
 
         <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/android_dev"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@drawable/background_rounded"
             android:layout_marginStart="12dp"
             android:layout_marginEnd="12dp"
+            android:background="@drawable/background_rounded"
             android:backgroundTint="@color/white_smoke_faded"
-            app:layout_constraintTop_toBottomOf="@id/android_dev_text"
-            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            android:id="@+id/android_dev">
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/android_dev_text">
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/anand_container"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="12dp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                android:layout_marginEnd="12dp"
-                app:layout_constraintEnd_toEndOf="parent"
+                android:layout_marginStart="6dp"
+                android:layout_marginEnd="6dp"
                 android:background="@drawable/background_rounded"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent">
 
@@ -92,7 +92,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="12dp"
                     android:gravity="center"
-                    android:text="ANAND BHALERAO"
+                    android:text="ANAND\nBHALERAO"
                     android:textColor="@color/black"
                     android:textSize="32sp"
                     app:layout_constraintEnd_toEndOf="parent"
@@ -151,40 +151,40 @@
         </androidx.constraintlayout.widget.ConstraintLayout>
 
         <TextView
+            android:id="@+id/web_dev_text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Web Developer's"
-            android:textSize="36sp"
-            android:fontFamily="@font/simple_light_rounded"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
             android:layout_marginTop="12dp"
+            android:fontFamily="@font/simple_light_rounded"
+            android:text="Web Developer's"
             android:textColor="@color/darker_blue"
-            app:layout_constraintTop_toBottomOf="@id/android_dev"
-            android:id="@+id/web_dev_text"/>
+            android:textSize="36sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/android_dev" />
 
         <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/web_dev"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/web_dev"
             android:layout_marginStart="12dp"
-            android:layout_marginBottom="12dp"
-            app:layout_constraintBottom_toBottomOf="parent"
             android:layout_marginEnd="12dp"
+            android:layout_marginBottom="12dp"
             android:background="@drawable/background_rounded"
-            app:layout_constraintTop_toBottomOf="@id/web_dev_text"
-            app:layout_constraintStart_toStartOf="parent"
+            android:backgroundTint="@color/white_smoke_faded"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            android:backgroundTint="@color/white_smoke_faded">
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/web_dev_text">
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/abhishek_container"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="12dp"
-                android:layout_marginEnd="12dp"
-                app:layout_constraintEnd_toEndOf="parent"
+                android:layout_marginStart="6dp"
+                android:layout_marginEnd="6dp"
                 android:background="@drawable/background_rounded"
+                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent">
 
@@ -257,10 +257,11 @@
                 android:id="@+id/amrit_container"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="12dp"
+                android:layout_marginStart="6dp"
                 android:layout_marginTop="12dp"
-                app:layout_constraintEnd_toEndOf="parent"
+                android:layout_marginEnd="6dp"
                 android:background="@drawable/background_rounded"
+                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/abhishek_container">
 
@@ -270,7 +271,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="12dp"
                     android:gravity="center"
-                    android:text="AMRIT SINGH"
+                    android:text="AMRIT\nSINGH"
                     android:textColor="@color/black"
                     android:textSize="32sp"
                     app:layout_constraintEnd_toEndOf="parent"
@@ -330,17 +331,16 @@
             </androidx.constraintlayout.widget.ConstraintLayout>
 
 
-
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/archisha_container"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="12dp"
+                android:layout_marginStart="6dp"
                 android:layout_marginTop="12dp"
-                android:layout_marginEnd="12dp"
-                app:layout_constraintEnd_toEndOf="parent"
+                android:layout_marginEnd="6dp"
                 android:background="@drawable/background_rounded"
                 app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/amrit_container">
 
