@@ -11,15 +11,11 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
 
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
-import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 
 public class LoginActivity extends AppCompatActivity {
@@ -29,6 +25,8 @@ public class LoginActivity extends AppCompatActivity {
     TextInputEditText emailET, passwordET;
     TextInputLayout emailContainer, passwordContainer;
     ImageView devContact, loginLogo;
+
+
     public static final int DEVICE_LOGIN = TypeOfLogin.DEVICE_LOGIN;
     public static final int USER_LOGIN = TypeOfLogin.USER_LOGIN;
     int loginType;
@@ -48,9 +46,8 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     private void buttonClicks() {
-        login.setOnClickListener(view -> {
-            loginUser();
-        });
+        login.setOnClickListener(view -> loginUser());
+
         signUp.setOnClickListener(view -> {
             Intent intent;
             if(loginType == USER_LOGIN){
@@ -66,9 +63,7 @@ public class LoginActivity extends AppCompatActivity {
             startActivity(intent);
         });
 
-        devContact.setOnClickListener(view -> {
-            startActivity(new Intent(this, ContactUsActivity.class));
-        });
+        devContact.setOnClickListener(view -> startActivity(new Intent(this, ContactUsActivity.class)));
     }
 
     private void init() {
@@ -121,16 +116,13 @@ public class LoginActivity extends AppCompatActivity {
             ProgressDialog progressDialog = new ProgressDialog(this);
             progressDialog.setMessage("Signing in, Please wait...");
             progressDialog.show();
-            FirebaseAuth.getInstance().signInWithEmailAndPassword(emailString, passwordString).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
-                @Override
-                public void onComplete(@NonNull Task<AuthResult> task) {
-                    progressDialog.dismiss();
-                    if (task.isSuccessful()) {
-                        Toast.makeText(getApplicationContext(), "Login Successful!", Toast.LENGTH_SHORT).show();
-                        startActivity(new Intent(getApplicationContext(), MainActivity.class));
-                    } else {
-                        Toast.makeText(getApplicationContext(), "Login Error: " + task.getException().getMessage(), Toast.LENGTH_SHORT).show();
-                    }
+            FirebaseAuth.getInstance().signInWithEmailAndPassword(emailString, passwordString).addOnCompleteListener(task -> {
+                progressDialog.dismiss();
+                if (task.isSuccessful()) {
+                    Toast.makeText(getApplicationContext(), "Login Successful!", Toast.LENGTH_SHORT).show();
+                    startActivity(new Intent(getApplicationContext(), MainActivity.class));
+                } else {
+                    Toast.makeText(getApplicationContext(), "Login Error: " + task.getException().getMessage(), Toast.LENGTH_SHORT).show();
                 }
             });
         }

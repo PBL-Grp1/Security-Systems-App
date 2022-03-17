@@ -8,13 +8,9 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Toast;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.best_company.securitysystem.databinding.ActivityCameraRegisterBinding;
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
-import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
@@ -28,7 +24,6 @@ public class CameraRegister extends AppCompatActivity {
     ActivityCameraRegisterBinding binding;
     FirebaseStorage storage;
     FirebaseAuth auth;
-    FirebaseDatabase database;
     DatabaseReference databaseReference;
     String locationType;
 
@@ -55,9 +50,7 @@ public class CameraRegister extends AppCompatActivity {
     }
 
     void register() {
-        binding.registerUser.setOnClickListener(view -> {
-            registerCamera();
-        });
+        binding.registerUser.setOnClickListener(view -> registerCamera());
     }
 
     void registerCamera() {
@@ -93,23 +86,20 @@ public class CameraRegister extends AppCompatActivity {
             map.put("Location", locationString);
             map.put("LocationType", locationType);
 
-            auth.createUserWithEmailAndPassword(emailString, passwordString).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
-                @Override
-                public void onComplete(@NonNull Task<AuthResult> task) {
+            auth.createUserWithEmailAndPassword(emailString, passwordString).addOnCompleteListener(task -> {
 
-                    if (task.isSuccessful()) {
-                        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-                        assert user != null;
-                        String uid = user.getUid();
-                        databaseReference.child("DeviceDatabase").child(uid).setValue(map);
+                if (task.isSuccessful()) {
+                    FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+                    assert user != null;
+                    String uid = user.getUid();
+                    databaseReference.child("DeviceDatabase").child(uid).setValue(map);
 
-                        Toast.makeText(getApplicationContext(), "Camera registered Successfully", Toast.LENGTH_SHORT).show();
-                        progressDialog.dismiss();
-                        onBackPressed();
-                    } else {
-                        progressDialog.dismiss();
-                        Toast.makeText(getApplicationContext(), "Registration Error: " + task.getException().getMessage(), Toast.LENGTH_SHORT).show();
-                    }
+                    Toast.makeText(getApplicationContext(), "Camera registered Successfully", Toast.LENGTH_SHORT).show();
+                    progressDialog.dismiss();
+                    onBackPressed();
+                } else {
+                    progressDialog.dismiss();
+                    Toast.makeText(getApplicationContext(), "Registration Error: " + task.getException().getMessage(), Toast.LENGTH_SHORT).show();
                 }
             });
         }

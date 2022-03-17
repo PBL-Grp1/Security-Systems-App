@@ -1,9 +1,5 @@
 package com.best_company.securitysystem;
 
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.net.Uri;
@@ -12,18 +8,16 @@ import android.text.TextUtils;
 import android.util.Log;
 import android.widget.Toast;
 
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
+
 import com.best_company.securitysystem.databinding.ActivityUserRegisterBinding;
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.OnSuccessListener;
-import com.google.android.gms.tasks.Task;
-import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
-import com.google.firebase.storage.UploadTask;
 
 import java.util.HashMap;
 
@@ -54,14 +48,10 @@ public class UserRegister extends AppCompatActivity {
         databaseReference = FirebaseDatabase.getInstance().getReference();
     }
     void registerUser(){
-        binding.registerUser.setOnClickListener(view -> {
-            createUser();
-        });
+        binding.registerUser.setOnClickListener(view -> createUser());
     }
     void alreadyHaveAccount(){
-        binding.alreadyHaveAcc.setOnClickListener(view -> {
-            onBackPressed();
-        });
+        binding.alreadyHaveAcc.setOnClickListener(view -> onBackPressed());
     }
 
     void setProfilePicture() {
@@ -122,29 +112,26 @@ public class UserRegister extends AppCompatActivity {
             map.put("PhoneNo", phoneString);
 
 
-            auth.createUserWithEmailAndPassword(emailString, passwordString).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
-                @Override
-                public void onComplete(@NonNull Task<AuthResult> task) {
-                    progressDialog.dismiss();
+            auth.createUserWithEmailAndPassword(emailString, passwordString).addOnCompleteListener(task -> {
+                progressDialog.dismiss();
 
-                    if (task.isSuccessful()) {
-                        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-                        assert user != null;
-                        String uid = user.getUid();
-                        Log.d("RegisterLogs", "The uid is " + uid);
-                        Log.d("RegisterLogs", "The map is " + map.toString());
-                        databaseReference.child("UserDatabase").child(uid).setValue(map);
+                if (task.isSuccessful()) {
+                    FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+                    assert user != null;
+                    String uid = user.getUid();
+                    Log.d("RegisterLogs", "The uid is " + uid);
+                    Log.d("RegisterLogs", "The map is " + map.toString());
+                    databaseReference.child("UserDatabase").child(uid).setValue(map);
 
-                        // to add the image to the storage
-                        final StorageReference reference = storage.getReference().child("profile_pictures")
-                                .child(auth.getUid());
-                        reference.putFile(imagePath);
+                    // to add the image to the storage
+                    final StorageReference reference = storage.getReference().child("profile_pictures")
+                            .child(auth.getUid());
+                    reference.putFile(imagePath);
 
-                        Toast.makeText(getApplicationContext(), "User registered Successfully", Toast.LENGTH_SHORT).show();
-                        onBackPressed();
-                    } else {
-                        Toast.makeText(getApplicationContext(), "Registration Error: " + task.getException().getMessage(), Toast.LENGTH_SHORT).show();
-                    }
+                    Toast.makeText(getApplicationContext(), "User registered Successfully", Toast.LENGTH_SHORT).show();
+                    onBackPressed();
+                } else {
+                    Toast.makeText(getApplicationContext(), "Registration Error: " + task.getException().getMessage(), Toast.LENGTH_SHORT).show();
                 }
             });
 

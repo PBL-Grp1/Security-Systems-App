@@ -22,7 +22,6 @@ public class TypeOfLogin extends AppCompatActivity {
     int selected;
 
     public static final String LOGIN_TYPE = "LOGIN_TYPE";
-    public static final String LOGIN_IMAGE = "LOGIN_IMAGE";
     public static final int DEVICE_LOGIN = 1;
     public static final int USER_LOGIN = 2;
 
