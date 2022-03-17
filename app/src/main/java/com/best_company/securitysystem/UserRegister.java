@@ -1,5 +1,6 @@
 package com.best_company.securitysystem;
 
+import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.net.Uri;
@@ -66,13 +67,12 @@ public class UserRegister extends AppCompatActivity {
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        Toast.makeText(this, "code is "+resultCode, Toast.LENGTH_SHORT).show();
-        if (requestCode != 0 && data.getData() != null) {
+        if (resultCode == Activity.RESULT_OK && data.getData() != null) {
             imagePath = data.getData();
             binding.profileImage.setImageURI(imagePath);
             imageAdded = true;
-
-
+        }else{
+            Toast.makeText(this, "Picture not selected", Toast.LENGTH_SHORT).show();
         }
     }
 
@@ -81,6 +81,7 @@ public class UserRegister extends AppCompatActivity {
         super.onBackPressed();
         finish();
     }
+
 
     public void createUser() {
         String emailString = binding.emailId.getText().toString();
@@ -127,7 +128,6 @@ public class UserRegister extends AppCompatActivity {
                     final StorageReference reference = storage.getReference().child("profile_pictures")
                             .child(auth.getUid());
                     reference.putFile(imagePath);
-
                     Toast.makeText(getApplicationContext(), "User registered Successfully", Toast.LENGTH_SHORT).show();
                     onBackPressed();
                 } else {

@@ -6,25 +6,35 @@ import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.util.Log;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
 
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 public class LoginActivity extends AppCompatActivity {
+    private final String LOGIN_LOGS = "LoginLogs";
 
     Button login;
     TextView forgotPW, signUp, loginTitleText;
     TextInputEditText emailET, passwordET;
     TextInputLayout emailContainer, passwordContainer;
     ImageView devContact, loginLogo;
+    boolean loginIsOfCorrectType = true;
 
 
     public static final int DEVICE_LOGIN = TypeOfLogin.DEVICE_LOGIN;
@@ -50,9 +60,9 @@ public class LoginActivity extends AppCompatActivity {
 
         signUp.setOnClickListener(view -> {
             Intent intent;
-            if(loginType == USER_LOGIN){
+            if (loginType == USER_LOGIN) {
                 intent = new Intent(this, UserRegister.class);
-            }else{
+            } else {
                 intent = new Intent(this, CameraRegister.class);
             }
             startActivity(intent);
@@ -102,7 +112,6 @@ public class LoginActivity extends AppCompatActivity {
     }
 
 
-
     private void loginUser() {
         String emailString = emailET.getText().toString();
         String passwordString = passwordET.getText().toString();
@@ -117,10 +126,38 @@ public class LoginActivity extends AppCompatActivity {
             progressDialog.setMessage("Signing in, Please wait...");
             progressDialog.show();
             FirebaseAuth.getInstance().signInWithEmailAndPassword(emailString, passwordString).addOnCompleteListener(task -> {
-                progressDialog.dismiss();
                 if (task.isSuccessful()) {
-                    Toast.makeText(getApplicationContext(), "Login Successful!", Toast.LENGTH_SHORT).show();
-                    startActivity(new Intent(getApplicationContext(), MainActivity.class));
+                    FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+                    assert user != null;
+                    String uid = user.getUid();
+                    String typeName = loginType == USER_LOGIN ? "UserDatabase" : "DeviceDatabase";
+                    Log.d(LOGIN_LOGS, "The uid is " + uid);
+                    Log.d(LOGIN_LOGS, "The type name is " + typeName);
+
+                    // checking if the user is trying to login in the correct login type.
+                    // it checks if the value is present in the firebase using the node names.
+                    // if the value is not present then null is returned and it does not login further and toast is shown
+                    DatabaseReference rootRef = FirebaseDatabase.getInstance().getReference();
+                    rootRef.child(typeName).child(uid).addListenerForSingleValueEvent(new ValueEventListener() {
+                        @Override
+                        public void onDataChange(@NonNull DataSnapshot snapshot) {
+                            if (snapshot.getValue() == null)
+                                loginIsOfCorrectType = false;
+                            progressDialog.dismiss();
+                            if (loginIsOfCorrectType) {
+                                Toast.makeText(getApplicationContext(), "Login Successful!", Toast.LENGTH_SHORT).show();
+                                startActivity(new Intent(getApplicationContext(), MainActivity.class));
+                            } else {
+                                String type = loginType == USER_LOGIN ? "User login" : "Camera login";
+                                Toast.makeText(getApplicationContext(), "No account found for " + type, Toast.LENGTH_SHORT).show();
+                            }
+                        }
+
+                        @Override
+                        public void onCancelled(@NonNull DatabaseError error) {
+                        }
+                    });
+
                 } else {
                     Toast.makeText(getApplicationContext(), "Login Error: " + task.getException().getMessage(), Toast.LENGTH_SHORT).show();
                 }
