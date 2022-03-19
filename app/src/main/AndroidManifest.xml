@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.best_company.securitysystem">
+    package="com.best_company.securitysystem" >
 
     <uses-permission android:name="android.permission.CAMERA" />
 
@@ -10,43 +10,47 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/Theme.SecuritySystem">
+        android:theme="@style/Theme.SecuritySystem" >
         <activity
-            android:name=".UserRegister"
-            android:theme="@style/NoActionBar"
+            android:name=".Activities.UserLogin.UserMainActivity"
+            android:exported="true"
+            android:label="@string/title_activity_user_main"
+            android:theme="@style/Theme.SecuritySystem.NoActionBar" />
+        <activity
+            android:name=".Activities.CameraLogin.CameraHomeActivity"
             android:exported="true" />
         <activity
-            android:name=".CameraRegister"
-        android:theme="@style/NoActionBar"
-            android:exported="true" />
-        <activity
-            android:name=".TypeOfLogin"
+            android:name=".Activities.Register.UserRegister"
             android:exported="true"
             android:theme="@style/NoActionBar" />
         <activity
-            android:name=".ContactUsActivity"
+            android:name=".Activities.Register.CameraRegister"
             android:exported="true"
             android:theme="@style/NoActionBar" />
         <activity
-            android:name=".ForgotPasswordActivity"
+            android:name=".Activities.Login.TypeOfLogin"
+            android:exported="true"
+            android:theme="@style/NoActionBar" />
+        <activity
+            android:name=".Activities.Login.ContactUsActivity"
+            android:exported="true"
+            android:theme="@style/NoActionBar" />
+        <activity
+            android:name=".Activities.ForgotPasswordActivity"
             android:exported="true"
             android:label="Forgot Password" />
         <activity
-            android:name=".LoginActivity"
+            android:name=".Activities.Login.LoginActivity"
             android:exported="true"
             android:theme="@style/NoActionBar" />
         <activity
-            android:name=".CameraActivity"
+            android:name=".Activities.CameraLogin.CameraActivity"
             android:exported="true" />
+
         <activity
-            android:name=".RegisterActivity"
+            android:name=".Activities.SplashScreen"
             android:exported="true"
-            android:label="Sign Up"
-            android:theme="@style/NoActionBar" />
-        <activity
-            android:name=".SplashScreen"
-            android:exported="true"
-            android:theme="@style/NoActionBar">
+            android:theme="@style/NoActionBar" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -54,7 +58,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".MainActivity"
+            android:name=".Activities.MainActivity"
             android:exported="true" />
     </application>
 

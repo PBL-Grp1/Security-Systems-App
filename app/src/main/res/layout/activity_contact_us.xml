@@ -10,7 +10,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/app_blue"
-        tools:context=".ContactUsActivity">
+        tools:context=".Activities.Login.ContactUsActivity">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/action_bar"

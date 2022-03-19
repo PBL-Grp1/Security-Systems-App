@@ -1,4 +1,4 @@
-package com.best_company.securitysystem;
+package com.best_company.securitysystem.Activities.CameraLogin;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -15,6 +15,8 @@ import android.provider.MediaStore;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.Toast;
+
+import com.best_company.securitysystem.R;
 
 public class CameraActivity extends AppCompatActivity {
 

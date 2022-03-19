@@ -1,6 +1,6 @@
-package com.best_company.securitysystem;
+package com.best_company.securitysystem.Activities.Login;
 
-import static com.best_company.securitysystem.TypeOfLogin.LOGIN_TYPE;
+import static com.best_company.securitysystem.Activities.Login.TypeOfLogin.LOGIN_TYPE;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
@@ -16,6 +16,12 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
 
+import com.best_company.securitysystem.Activities.ForgotPasswordActivity;
+import com.best_company.securitysystem.Activities.MainActivity;
+import com.best_company.securitysystem.Activities.Register.CameraRegister;
+import com.best_company.securitysystem.Activities.Register.UserRegister;
+import com.best_company.securitysystem.Activities.UserLogin.UserMainActivity;
+import com.best_company.securitysystem.R;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
 import com.google.firebase.auth.FirebaseAuth;
@@ -113,7 +119,7 @@ public class LoginActivity extends AppCompatActivity {
 
 
     private void loginUser() {
-        String emailString = emailET.getText().toString();
+        String emailString = emailET.getText().toString().trim();
         String passwordString = passwordET.getText().toString();
         if (TextUtils.isEmpty(emailString)) {
             emailET.setError("Email cannot be empty");
@@ -146,8 +152,11 @@ public class LoginActivity extends AppCompatActivity {
                             progressDialog.dismiss();
                             if (loginIsOfCorrectType) {
                                 Toast.makeText(getApplicationContext(), "Login Successful!", Toast.LENGTH_SHORT).show();
-                                startActivity(new Intent(getApplicationContext(), MainActivity.class));
+                                loginIsOfCorrectType = true;
+                                startActivity(new Intent(getApplicationContext(), UserMainActivity.class));
+                                finish();
                             } else {
+                                loginIsOfCorrectType = true;
                                 String type = loginType == USER_LOGIN ? "User login" : "Camera login";
                                 Toast.makeText(getApplicationContext(), "No account found for " + type, Toast.LENGTH_SHORT).show();
                             }
@@ -159,6 +168,7 @@ public class LoginActivity extends AppCompatActivity {
                     });
 
                 } else {
+                    progressDialog.dismiss();
                     Toast.makeText(getApplicationContext(), "Login Error: " + task.getException().getMessage(), Toast.LENGTH_SHORT).show();
                 }
             });

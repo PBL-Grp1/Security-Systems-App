@@ -1,4 +1,4 @@
-package com.best_company.securitysystem;
+package com.best_company.securitysystem.Activities.Login;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
@@ -9,6 +9,9 @@ import android.os.Bundle;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.best_company.securitysystem.Activities.Login.LoginActivity;
+import com.best_company.securitysystem.R;
 
 public class TypeOfLogin extends AppCompatActivity {
 
@@ -70,7 +73,7 @@ public class TypeOfLogin extends AppCompatActivity {
 
     void getStartedButtonClick(){
         getStartedButton.setOnClickListener(view -> {
-            Intent intent = new Intent(this,LoginActivity.class);
+            Intent intent = new Intent(this, LoginActivity.class);
             if(selected == -1){
                 Toast.makeText(this, "No option Selected!", Toast.LENGTH_SHORT).show();
                 return;

@@ -1,10 +1,12 @@
-package com.best_company.securitysystem;
+package com.best_company.securitysystem.Activities;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
-import android.graphics.Camera;
 import android.os.Bundle;
+
+import com.best_company.securitysystem.Activities.CameraLogin.CameraActivity;
+import com.best_company.securitysystem.R;
 
 public class MainActivity extends AppCompatActivity {
 

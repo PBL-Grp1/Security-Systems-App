@@ -9,7 +9,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        tools:context=".LoginActivity">
+        tools:context=".Activities.Login.LoginActivity">
 
         <ImageView
             android:id="@+id/top_blue_bg"

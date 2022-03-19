@@ -1,4 +1,4 @@
-package com.best_company.securitysystem;
+package com.best_company.securitysystem.Activities.Register;
 
 import android.app.ProgressDialog;
 import android.os.Bundle;

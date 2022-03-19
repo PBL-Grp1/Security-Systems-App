@@ -11,7 +11,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/white"
-        tools:context=".LoginActivity">
+        tools:context=".Activities.Login.LoginActivity">
 
         <ImageView
             android:id="@+id/top_blue_bg"
@@ -142,6 +142,7 @@
                 android:layout_marginEnd="6dp"
                 android:layout_marginTop="24dp"
                 android:hint="Email"
+
                 app:endIconMode="clear_text"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -151,6 +152,7 @@
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/email_id"
                     android:layout_width="match_parent"
+                    android:inputType="textEmailAddress"
                     android:layout_height="wrap_content" />
             </com.google.android.material.textfield.TextInputLayout>
 

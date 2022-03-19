@@ -1,4 +1,4 @@
-package com.best_company.securitysystem;
+package com.best_company.securitysystem.Activities;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -6,6 +6,9 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Handler;
+
+import com.best_company.securitysystem.Activities.Login.TypeOfLogin;
+import com.best_company.securitysystem.R;
 
 public class SplashScreen extends AppCompatActivity {
     public static final String SHARED = "SHARED";
