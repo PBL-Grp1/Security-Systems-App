@@ -9,13 +9,18 @@
     <string name="action_settings">Settings</string>
 
     <string name="menu_home">Home</string>
-    <string name="menu_gallery">Gallery</string>
-    <string name="menu_slideshow">Slideshow</string>
+    <string name="menu_connected">Connected</string>
+    <string name="menu_add_device">Add Device</string>
     <string name="profile_picture">Profile Picture</string>
     <string name="history">History</string>
     <string name="add_device">Add Device</string>
     <string name="connected_devices">Connected Devices</string>
     <string name="developers">Developers</string>
+    <string name="logout">Logout</string>
     <string name="menu_profile">Profile</string>
     <string name="log_out">Log out</string>
+    <string name="title_activity_camera_main">CameraMainActivity</string>
+    <string name="menu_gallery">Gallery</string>
+    <string name="menu_slideshow">Slideshow</string>
+    <string name="title_activity_abcd">ABCD</string>
 </resources>

@@ -9,12 +9,16 @@ import android.text.TextUtils;
 import android.util.Log;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.best_company.securitysystem.databinding.ActivityUserRegisterBinding;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.auth.UserProfileChangeRequest;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.storage.FirebaseStorage;
@@ -122,14 +126,22 @@ public class UserRegister extends AppCompatActivity {
                     String uid = user.getUid();
                     Log.d("RegisterLogs", "The uid is " + uid);
                     Log.d("RegisterLogs", "The map is " + map.toString());
-                    databaseReference.child("UserDatabase").child(uid).setValue(map);
 
                     // to add the image to the storage
                     final StorageReference reference = storage.getReference().child("profile_pictures")
                             .child(auth.getUid());
                     reference.putFile(imagePath);
-                    Toast.makeText(getApplicationContext(), "User registered Successfully", Toast.LENGTH_SHORT).show();
-                    onBackPressed();
+
+                    UserProfileChangeRequest profileUpdates = new UserProfileChangeRequest.Builder()
+                            .setDisplayName(nameString)
+                            .setPhotoUri(imagePath)
+                            .build();
+
+                    user.updateProfile(profileUpdates).addOnCompleteListener(task1 -> {
+                        Toast.makeText(getApplicationContext(), "User registered Successfully", Toast.LENGTH_SHORT).show();
+                        databaseReference.child("UserDatabase").child(uid).setValue(map);
+                        onBackPressed();
+                    });
                 } else {
                     Toast.makeText(getApplicationContext(), "Registration Error: " + task.getException().getMessage(), Toast.LENGTH_SHORT).show();
                 }

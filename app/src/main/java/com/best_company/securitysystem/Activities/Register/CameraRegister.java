@@ -8,13 +8,17 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.best_company.securitysystem.databinding.ActivityCameraRegisterBinding;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.FirebaseStorage;
 
 import java.util.HashMap;
@@ -79,12 +83,7 @@ public class CameraRegister extends AppCompatActivity {
             ProgressDialog progressDialog = new ProgressDialog(this);
             progressDialog.setMessage("Creating an account, Please wait...");
             progressDialog.show();
-            HashMap<String, String> map = new HashMap<>();
-            map.put("DeviceName", nameString);
-            map.put("Email", emailString);
-            map.put("PhoneNo", phoneString);
-            map.put("Location", locationString);
-            map.put("LocationType", locationType);
+
 
             auth.createUserWithEmailAndPassword(emailString, passwordString).addOnCompleteListener(task -> {
 
@@ -92,7 +91,40 @@ public class CameraRegister extends AppCompatActivity {
                     FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
                     assert user != null;
                     String uid = user.getUid();
-                    databaseReference.child("DeviceDatabase").child(uid).setValue(map);
+
+
+                    databaseReference.child("DeviceDatabase").child("Values").child("Code").addListenerForSingleValueEvent(new ValueEventListener() {
+                        @Override
+                        public void onDataChange(@NonNull DataSnapshot snapshot) {
+                            int value = snapshot.getValue(Integer.class);
+                            StringBuilder temp = new StringBuilder(String.valueOf(value));
+
+
+                            while (temp.length() != 6) {
+                                temp.insert(0, "0");
+
+                            }
+                            String code = temp.toString();
+                            ;
+                            HashMap<String, String> map = new HashMap<>();
+                            map.put("DeviceName", nameString);
+                            map.put("Email", emailString);
+                            map.put("PhoneNo", phoneString);
+                            map.put("Location", locationString);
+                            map.put("LocationType", locationType);
+                            map.put("Code", code);
+                            databaseReference.child("DeviceDatabase").child("Devices").child(uid).setValue(map);
+                            databaseReference.child("DeviceDatabase").child("Codes").child(code).setValue(user.getUid());
+                            int newValue = value +1;
+                            databaseReference.child("DeviceDatabase").child("Values").child("Code").setValue(newValue);
+
+                        }
+
+                        @Override
+                        public void onCancelled(@NonNull DatabaseError error) {
+
+                        }
+                    });
 
                     Toast.makeText(getApplicationContext(), "Camera registered Successfully", Toast.LENGTH_SHORT).show();
                     progressDialog.dismiss();

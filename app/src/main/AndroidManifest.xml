@@ -11,6 +11,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.SecuritySystem" >
+
         <activity
             android:name=".Activities.UserLogin.UserMainActivity"
             android:exported="true"
@@ -19,6 +20,7 @@
         <activity
             android:name=".Activities.CameraLogin.CameraHomeActivity"
             android:exported="true" />
+
         <activity
             android:name=".Activities.Register.UserRegister"
             android:exported="true"
@@ -46,7 +48,6 @@
         <activity
             android:name=".Activities.CameraLogin.CameraActivity"
             android:exported="true" />
-
         <activity
             android:name=".Activities.SplashScreen"
             android:exported="true"

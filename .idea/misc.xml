@@ -16,19 +16,22 @@
         <entry key="..\:/Android dev/JAVA/PBL/2022_SE/SecuritySystem/app/src/main/res/layout/activity_forgot_password.xml" value="0.20520833333333333" />
         <entry key="..\:/Android dev/JAVA/PBL/2022_SE/SecuritySystem/app/src/main/res/layout/activity_login.xml" value="0.2" />
         <entry key="..\:/Android dev/JAVA/PBL/2022_SE/SecuritySystem/app/src/main/res/layout/activity_main.xml" value="0.20520833333333333" />
+        <entry key="..\:/Android dev/JAVA/PBL/2022_SE/SecuritySystem/app/src/main/res/layout/activity_main12.xml" value="0.20520833333333333" />
         <entry key="..\:/Android dev/JAVA/PBL/2022_SE/SecuritySystem/app/src/main/res/layout/activity_register.xml" value="0.264" />
         <entry key="..\:/Android dev/JAVA/PBL/2022_SE/SecuritySystem/app/src/main/res/layout/activity_splash_screen.xml" value="0.176" />
         <entry key="..\:/Android dev/JAVA/PBL/2022_SE/SecuritySystem/app/src/main/res/layout/activity_type_of_login.xml" value="0.17447916666666666" />
         <entry key="..\:/Android dev/JAVA/PBL/2022_SE/SecuritySystem/app/src/main/res/layout/activity_type_of_register.xml" value="0.176" />
-        <entry key="..\:/Android dev/JAVA/PBL/2022_SE/SecuritySystem/app/src/main/res/layout/activity_user_main.xml" value="0.536" />
+        <entry key="..\:/Android dev/JAVA/PBL/2022_SE/SecuritySystem/app/src/main/res/layout/activity_user_main.xml" value="0.264" />
         <entry key="..\:/Android dev/JAVA/PBL/2022_SE/SecuritySystem/app/src/main/res/layout/activity_user_register.xml" value="0.24118070554355653" />
         <entry key="..\:/Android dev/JAVA/PBL/2022_SE/SecuritySystem/app/src/main/res/layout/app_bar_user_main.xml" value="0.20520833333333333" />
         <entry key="..\:/Android dev/JAVA/PBL/2022_SE/SecuritySystem/app/src/main/res/layout/content_user_main.xml" value="0.20520833333333333" />
+        <entry key="..\:/Android dev/JAVA/PBL/2022_SE/SecuritySystem/app/src/main/res/layout/fragment_add_device.xml" value="0.2" />
         <entry key="..\:/Android dev/JAVA/PBL/2022_SE/SecuritySystem/app/src/main/res/layout/fragment_home.xml" value="0.20520833333333333" />
         <entry key="..\:/Android dev/JAVA/PBL/2022_SE/SecuritySystem/app/src/main/res/layout/fragment_profile.xml" value="0.152" />
         <entry key="..\:/Android dev/JAVA/PBL/2022_SE/SecuritySystem/app/src/main/res/layout/fragment_slideshow.xml" value="0.20520833333333333" />
-        <entry key="..\:/Android dev/JAVA/PBL/2022_SE/SecuritySystem/app/src/main/res/layout/nav_header_user_main.xml" value="0.2" />
+        <entry key="..\:/Android dev/JAVA/PBL/2022_SE/SecuritySystem/app/src/main/res/layout/nav_header_user_main.xml" value="0.264" />
         <entry key="..\:/Android dev/JAVA/PBL/2022_SE/SecuritySystem/app/src/main/res/menu/activity_main_drawer.xml" value="0.4" />
+        <entry key="..\:/Android dev/JAVA/PBL/2022_SE/SecuritySystem/app/src/main/res/menu/camera_main.xml" value="0.20520833333333333" />
         <entry key="..\:/Android dev/JAVA/PBL/2022_SE/SecuritySystem/app/src/main/res/menu/user_main.xml" value="0.20520833333333333" />
       </map>
     </option>

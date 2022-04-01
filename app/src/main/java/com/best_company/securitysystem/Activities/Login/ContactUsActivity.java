@@ -64,8 +64,21 @@ public class ContactUsActivity extends AppCompatActivity {
         archishaLinks();
         abhishekLinks();
         amritLinks();
+
+        openWebsite();
     }
 
+    public void openWebsite(){
+        TextView website = findViewById(R.id.websiteLink);
+        website.setOnClickListener(view -> {
+//            String url = "securitysystems.ezyro.com/security_system.html";
+            String url = "www.google.com";
+            Uri uriWeb = Uri.parse(url);
+            startActivity(new Intent(Intent.ACTION_VIEW,uriWeb));
+        });
+
+
+    }
     void openTheLink(ImageView imageWithLogo,String link){
         imageWithLogo.setOnClickListener(view -> {
             Uri uri = Uri.parse(link);
